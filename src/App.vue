@@ -4,7 +4,7 @@ import Layout from "./components/Layout.vue";
 
 <template>
   <Layout>
+    <h1>home</h1>
     <router-view />
-    Home
   </Layout>
 </template>

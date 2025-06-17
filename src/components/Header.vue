@@ -12,9 +12,9 @@
       </div>
 
       <div class="navBar__rightSide">
-        <h4 class="navBar__searchLabel">Search</h4>
+        <h4 class="navBar__rightSidd--searchLabel">Search</h4>
         <a href="#" class="navBar__rightSide--signIn">Sign In</a>
-        <button class="navBar__cartBtn">🛒</button>
+        <button class="navBar__rightSide--cartBtn">🛒</button>
       </div>
     </nav>
   </header>

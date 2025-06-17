@@ -1,5 +1,12 @@
 <template>
-    <footer>Footer</footer>
+  <footer>
+    <div class="primaryContainer">
+      <div>left</div>
+      <div>rights</div>
+    </div>
+
+    <div class="secondaryContainer">links</div>
+  </footer>
 </template>
 
 <style scoped>
@@ -10,5 +17,10 @@ footer {
   width: 100%;
   background-color: gray;
   text-align: center;
+}
+
+.primaryContainer {
+  display: flex;
+  justify-content: space-around;
 }
 </style>

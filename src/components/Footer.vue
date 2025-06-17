@@ -8,8 +8,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: navy;
-  color: white;
+  background-color: gray;
   text-align: center;
 }
 </style>

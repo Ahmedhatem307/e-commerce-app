@@ -7,3 +7,16 @@
     </nav>
   </header>
 </template>
+
+<style scoped>
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: large;
+}
+.router-link-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+</style>

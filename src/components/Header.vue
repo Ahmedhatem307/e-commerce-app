@@ -12,8 +12,6 @@
       </div>
 
       <div class="navBar__rightSide">
-        <h4 class="navBar__rightSidd--searchLabel">Search</h4>
-        <a href="#" class="navBar__rightSide--signIn">Sign In</a>
         <button class="navBar__rightSide--cartBtn">🛒</button>
       </div>
     </nav>
@@ -22,6 +20,8 @@
 
 <style scoped>
 .navBar {
+  background-color: #1c2e4a;
+  color: #d1cfc9;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -36,7 +36,7 @@
   & .navBar__leftSide--link,
   .navBar__rightSide--signIn {
     text-decoration: none;
-    color: gray;
+    color: #d1cfc9;
     font-weight: bold;
   }
 

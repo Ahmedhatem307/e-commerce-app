@@ -112,6 +112,9 @@ footer {
   & h2 {
     margin-bottom: 3px;
   }
+  & .container__phone {
+    margin-top: 2px;
+  }
 }
 
 .container__social {
@@ -122,6 +125,21 @@ footer {
   & .container__social--icon {
     width: auto;
     height: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container__layout,
+  .container__info {
+    margin-bottom: 20px;
+  }
+
+  .container__info {
+    text-align: left;
+  }
+
+  .container__buttom {
+    font-size: x-small;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <header>
     <nav class="navBar">
       <div class="navBar__leftSide">
-        <h4 class="navBar__leftSide--logo">Logo</h4>
+        <img class="navBar__leftSide--logo" src="../assets/images/logo.png" />
         <router-link to="/products" class="navBar__leftSide--link"
           >Products</router-link
         >
@@ -26,7 +26,7 @@
   justify-content: space-between;
   gap: 1rem;
   font-size: large;
-  padding: 0 30px;
+  padding: 0 100px;
   & .navBar__leftSide,
   .navBar__rightSide {
     display: flex;
@@ -42,6 +42,11 @@
 
   & .navBar__leftSide {
     flex-wrap: wrap;
+  }
+
+  & .navBar__leftSide--logo {
+    width: auto;
+    height: 60px;
   }
 }
 .router-link-active {

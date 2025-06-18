@@ -1,38 +1,38 @@
 <template>
   <footer>
     <div class="container">
-      <div class="leftContainer">
-        <div class="primaryContainer__lists">
-          <div>
-            <h4>Navigate</h4>
-            <ul>
-              <li>About Us</li>
-              <li>Blog</li>
-              <li>Contact Us</li>
-              <li>Sitemap</li>
+      <div class="container__nav">
+        <div class="container__layout">
+          <div class="container__column">
+            <h4 class="container__title">Navigate</h4>
+            <ul class="container__list">
+              <li class="container__list--item">About Us</li>
+              <li class="container__list--item">Blog</li>
+              <li class="container__list--item">Contact Us</li>
+              <li class="container__list--item">Sitemap</li>
             </ul>
           </div>
-          <div>
-            <h4>Collection</h4>
-            <ul>
-              <li>New Arrivals</li>
-              <li>Featured</li>
-              <li>Catalog</li>
-              <li>Brands</li>
+          <div class="container__column">
+            <h4 class="container__title">Collection</h4>
+            <ul class="container__list">
+              <li class="container__list--item">New Arrivals</li>
+              <li class="container__list--item">Featured</li>
+              <li class="container__list--item">Catalog</li>
+              <li class="container__list--item">Brands</li>
             </ul>
           </div>
-          <div>
-            <h4>Categories</h4>
-            <ul>
-              <li>Tables</li>
-              <li>Lamps</li>
-              <li>Chairs</li>
-              <li>Sofas</li>
+          <div class="container__column">
+            <h4 class="container__title">Categories</h4>
+            <ul class="container__list">
+              <li class="container__list--item">Tables</li>
+              <li class="container__list--item">Lamps</li>
+              <li class="container__list--item">Chairs</li>
+              <li class="container__list--item">Sofas</li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="rightContainer">
+      <div class="container__info">
         <div class="info">
           <h2>399 Crownfield Road,</h2>
           <h2>Phoenix, Arizona 85012</h2>
@@ -66,40 +66,43 @@ footer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  & .container,
+  .buttomContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px 100px 0px 100px;
+  }
 }
-.container,
-.buttomContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0px 100px 0px 100px;
+.container {
+  & .container__nav,
+  .container__info {
+    display: flex;
+    flex-direction: column;
+  }
 }
-.leftContainer,
-.rightContainer {
-  display: flex;
-  flex-direction: column;
-}
+
 .info {
   text-align: end;
   & h2 {
     margin-bottom: 3px;
   }
 }
-.primaryContainer__lists {
+.container__layout {
   display: flex;
   gap: 30px;
-}
-.primaryContainer__lists div ul {
-  list-style-type: none;
-  padding: 0px;
+  & .container__list {
+    list-style-type: none;
+    padding: 0px;
+  }
+  & .container__column {
+    text-align: left;
+  }
+  & .container__list--item {
+    margin: 5px 0 10px 0;
+  }
 }
 
-.primaryContainer__lists div {
-  text-align: left;
-}
-.primaryContainer__lists div li {
-  margin: 5px 0 10px 0;
-}
 .social {
   display: flex;
   justify-content: flex-end;

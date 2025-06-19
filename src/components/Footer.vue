@@ -129,6 +129,12 @@ footer {
 }
 
 @media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    & .container__layout {
+      justify-content: space-around;
+    }
+  }
   .container__layout,
   .container__info {
     margin-bottom: 20px;

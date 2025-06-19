@@ -3,14 +3,11 @@
     <nav class="navBar">
       <div class="navBar__leftSide">
         <div class="navBar__hamburger" @click="toggleMenu">☰</div>
-        <img class="navBar__leftSide--logo" src="../assets/images/logo.png" />
+        <NavLogo></NavLogo>
+
         <div class="navBar__links" :class="{ open: isMenuOpen }">
-          <router-link to="/products" class="navBar__leftSide--link"
-            >Products</router-link
-          >
-          <router-link to="/contact" class="navBar__leftSide--link"
-            >Contact</router-link
-          >
+          <PageLink to="/products">Products</PageLink>
+          <PageLink to="/contact">Contact Us</PageLink>
         </div>
       </div>
 
@@ -22,7 +19,13 @@
 </template>
 
 <script>
+import PageLink from "./PageLink.vue";
+import NavLogo from "./NavLogo.vue";
 export default {
+  components: {
+    PageLink,
+    NavLogo,
+  },
   data() {
     return {
       isMenuOpen: false,
@@ -53,12 +56,6 @@ export default {
     display: flex;
     align-items: center;
     gap: 15px;
-  }
-  & .navBar__leftSide--link,
-  .navBar__rightSide--signIn {
-    text-decoration: none;
-    color: #d1cfc9;
-    font-weight: bold;
   }
 
   & .navBar__leftSide {

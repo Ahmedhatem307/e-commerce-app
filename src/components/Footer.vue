@@ -148,4 +148,11 @@ footer {
     font-size: x-small;
   }
 }
+
+@media (min-width: 330px) and (max-width: 767px) {
+  .container,
+  .container__buttom {
+    margin: 20px !important;
+  }
+}
 </style>

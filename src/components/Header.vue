@@ -2,7 +2,7 @@
   <header>
     <nav class="navBar">
       <div class="navBar__leftSide">
-        <div class="navBar__hamburger" @click="toggleMenu">☰</div>
+        <HamburgerMenu @click="toggleMenu"></HamburgerMenu>
         <NavLogo></NavLogo>
 
         <div class="navBar__links" :class="{ open: isMenuOpen }">
@@ -21,10 +21,12 @@
 <script>
 import PageLink from "./PageLink.vue";
 import NavLogo from "./NavLogo.vue";
+import HamburgerMenu from "./HamburgerMenu.vue";
 export default {
   components: {
     PageLink,
     NavLogo,
+    HamburgerMenu,
   },
   data() {
     return {
@@ -42,7 +44,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .navBar {
   background-color: #1c2e4a;
   color: #d1cfc9;
@@ -51,43 +53,24 @@ export default {
   gap: 1rem;
   font-size: large;
   padding: 0 100px;
-  & .navBar__leftSide,
-  .navBar__rightSide {
+  &__leftSide,
+  &__rightSide {
     display: flex;
     align-items: center;
     gap: 15px;
   }
 
-  & .navBar__leftSide {
+  &__leftSide {
     flex-wrap: wrap;
   }
 
-  & .navBar__leftSide--logo {
-    width: auto;
-    height: 60px;
-  }
-
-  & .navBar__links {
+  &__links {
     display: flex;
     gap: 1rem;
   }
 }
 
-.navBar__hamburger {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
-}
-.router-link-active {
-  font-weight: bold;
-  text-decoration: none;
-}
-
 @media (max-width: 768px) {
-  .navBar__hamburger {
-    display: block;
-  }
-
   .navBar__links {
     display: none !important;
     flex-direction: column;

@@ -12,7 +12,7 @@
       </div>
 
       <div class="navBar__rightSide">
-        <button class="navBar__rightSide--cartBtn">🛒</button>
+        <CartButton></CartButton>
       </div>
     </nav>
   </header>
@@ -22,11 +22,15 @@
 import PageLink from "./PageLink.vue";
 import NavLogo from "./NavLogo.vue";
 import HamburgerMenu from "./HamburgerMenu.vue";
+import CartButton from "./CartButton.vue";
+import CartSidebar from "./CartSidebar.vue";
 export default {
   components: {
     PageLink,
     NavLogo,
     HamburgerMenu,
+    CartButton,
+    CartSidebar,
   },
   data() {
     return {

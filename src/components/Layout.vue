@@ -34,7 +34,7 @@ body {
 }
 main {
   flex: 1;
-  background: #f5f5f5;
+  background-color: #f5f5f5;
   padding: 1rem;
   min-height: 60vh;
   text-align: center;

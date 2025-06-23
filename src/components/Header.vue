@@ -83,11 +83,6 @@ export default {
     padding: 1rem;
     z-index: 1000;
     background-color: #1c2e4a;
-
-    & .navBar__leftSide--link:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateX(5px);
-    }
   }
 
   .navBar__links.open {

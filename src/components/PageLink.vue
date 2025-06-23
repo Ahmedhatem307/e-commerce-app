@@ -21,4 +21,8 @@ export default {
   color: #d1cfc9;
   font-weight: bold;
 }
+.navBar__leftSide--link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
 </style>

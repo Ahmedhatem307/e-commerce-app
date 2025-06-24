@@ -30,17 +30,26 @@ const productsModule = {
   mutations: {
     setProducts(state: ProductsState, products: Product[]) {
       state.products = products;
+    },
+    setLoading(state: ProductsState, loading: boolean) {
+      state.loading = loading;
+    },
+    setError(state: ProductsState, error: string | null){
+      state.error = error;
     }
   },
   actions: {
     async fetchProducts({ commit }: any) {
+      commit('setLoading', true);
       try{
         const res = await fetch('https://fakestoreapi.com/products');
         const data = await res.json();
         commit('setProducts', data);
+        commit('setLoading', false);
       }
       catch(error) {
-        console.error(error);
+        commit('setError', 'Failed to load');
+        commit('setLoading', false);
       }
     },
   },

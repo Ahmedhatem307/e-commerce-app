@@ -1,14 +1,14 @@
 <template>
   <div class="productCard">
-    <h3>{{ product?.title }}</h3>
-    <h4>{{ product?.category }}</h4>
+    <h3>{{ product.title }}</h3>
+    <h4>{{ product.category }}</h4>
     <div class="productCard__rating">
       <p>{{ product.rating.rate }} out of 5 stars</p>
       <small>({{ product.rating.count }} reviews)</small>
     </div>
     <img :src="product?.image" alt="Product image" class="productCard__image" />
-    <p>{{ product?.description }}</p>
-    <p>{{ product?.price }} $</p>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }} $</p>
     <div class="productCard__addItem">
       <button class="productCard__addItem--btn">Add to Cart</button>
     </div>
@@ -37,7 +37,6 @@ export default {
   width: 300px;
 
   &__rating {
-    // display: flex;
     align-items: center;
     margin-bottom: 10px;
   }

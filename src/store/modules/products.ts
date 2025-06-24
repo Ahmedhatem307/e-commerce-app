@@ -1,19 +1,52 @@
-import {createStore} from 'vuex'
 
-export default createStore ({
-    state: {
+export interface Rating {
+  rate: number;
+  count: number;
+}
 
-    },
-    mutations: {
+export interface Product {
+  id: number
+  title: string
+  price: number
+  description: string
+  category: string
+  image: string
+  rating: Rating
+}
 
-    },
-    actionns: {
+export interface ProductsState {
+  products: Product[]
+  loading: boolean
+  error: string | null
+}
 
-    },
-    getters: {
-
-    },
-    modules: {
-        
+const productsModule = {
+  namespaced: true,
+  state: (): ProductsState => ({
+    products: [],
+    loading: false,
+    error: null,
+  }),
+  mutations: {
+    setProducts(state: ProductsState, products: Product[]) {
+      state.products = products;
     }
-})
+  },
+  actions: {
+    async fetchProducts({ commit }: any) {
+      try{
+        const res = await fetch('https://fakestoreapi.com/products');
+        const data = await res.json();
+        commit('setProducts', data);
+      }
+      catch(error) {
+        console.error(error);
+      }
+    },
+  },
+  getters: {
+    
+    },
+  }
+
+export default productsModule

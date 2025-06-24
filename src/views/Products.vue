@@ -1,7 +1,7 @@
 <template>
   <div class="productPage">
     <h1>Products Page</h1>
-    <div class="productGrid">
+    <div class="productPage__Grid">
       <ProductCard
         v-for="product in products"
         :product="product"
@@ -31,10 +31,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.productGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  justify-content: center;
+.productPage {
+  &__Grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+  }
 }
 </style>

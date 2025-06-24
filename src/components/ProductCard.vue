@@ -9,8 +9,8 @@
     <img :src="product?.image" alt="Product image" class="productCard__image" />
     <p>{{ product?.description }}</p>
     <p>{{ product?.price }} $</p>
-    <div class="productCard__addItemBtn">
-      <button>Add to Cart</button>
+    <div class="productCard__addItem">
+      <button class="productCard__addItem--btn">Add to Cart</button>
     </div>
   </div>
 </template>

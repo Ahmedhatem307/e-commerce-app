@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts">
-// import ProductDetail from "./ProductDetail.vue";
 import { mapActions, mapState } from "vuex";
 import ProductCard from "../components/ProductCard.vue";
 export default {

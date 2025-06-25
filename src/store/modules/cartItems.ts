@@ -15,10 +15,11 @@ const cartItemsModule = {
         ADD_ITEM(state: cartState, item: CartItem) {
             const existingItem = state.items.find(i => i.id === item.id)
             if(existingItem){
-                existingItem.quantity += item.quantity
+                existingItem.quantity += 1
             }
             else{
                 state.items.push(item)
+                item.quantity=1
             }
         },
         REMOVE_ITEMS(state: cartState, id:number) {

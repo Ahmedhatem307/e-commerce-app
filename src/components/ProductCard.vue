@@ -10,7 +10,9 @@
     <p>{{ product.description }}</p>
     <p>{{ product.price }} $</p>
     <div class="productCard__addItem">
-      <button class="productCard__addItem--btn">Add to Cart</button>
+      <button class="productCard__addItem--btn" @click="addToCart">
+        Add to Cart
+      </button>
     </div>
   </div>
 </template>
@@ -18,12 +20,18 @@
 <script lang="ts">
 import type { PropType } from "vue";
 import type { Product } from "../store/modules/products";
-
+import { mapMutations } from "vuex";
 export default {
   props: {
     product: {
       type: Object as PropType<Product>,
       required: true,
+    },
+  },
+  methods: {
+    ...mapMutations("cartItems", ["ADD_ITEM"]),
+    addToCart() {
+      this.ADD_ITEM(this.product);
     },
   },
 };

@@ -8,11 +8,21 @@
     </div>
     <hr />
 
-    <div v-if="itemCount === 1">
+    <div v-if="itemCount === 0">
       <p>Your cart is empty. Try to add stuff</p>
     </div>
     <div v-else>
-      <div v-for="item in cartItems as CartItem[]" :key="item.id"></div>
+      <div
+        v-for="item in cartItems as CartItem[]"
+        :key="item.id"
+        class="cartItem"
+      >
+        {{ item.title }}
+        {{ item.price }}$
+        {{ item.quantity }}
+        <img :src="item.image" alt="" class="cartItem--img" />
+      </div>
+      <div></div>
     </div>
     <div class="cartSidebar__content"></div>
   </div>
@@ -44,6 +54,12 @@ export default {
       right: 0px;
       top: 0px;
     }
+  }
+}
+.cartItem {
+  font-size: small;
+  &--img {
+    width: 20px;
   }
 }
 </style>

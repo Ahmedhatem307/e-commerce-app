@@ -7,11 +7,27 @@
       </button>
     </div>
     <hr />
-    <div class="cartSidebar__content">
+
+    <div v-if="itemCount === 1">
       <p>Your cart is empty. Try to add stuff</p>
     </div>
+    <div v-else>
+      <div v-for="item in cartItems as CartItem[]" :key="item.id"></div>
+    </div>
+    <div class="cartSidebar__content"></div>
   </div>
 </template>
+
+<script lang="ts">
+import { mapGetters } from "vuex";
+import type { CartItem } from "../types/CartItem";
+
+export default {
+  computed: {
+    ...mapGetters("cartItems", ["cartItems", "itemCount", "totalPrice"]),
+  },
+};
+</script>
 
 <style scoped lang="scss">
 .cartSidebar {

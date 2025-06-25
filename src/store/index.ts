@@ -1,6 +1,6 @@
 import {createStore} from 'vuex'
 import products from './modules/products'
-import cart from './modules/cartItems'
+import cartItems from './modules/cartItems'
 const store = createStore ({
     state: {
 
@@ -9,16 +9,14 @@ const store = createStore ({
 
     },
     actionns: {
-        async fetchProducts() {
 
-        }
     },
     getters: {
 
     },
     modules: {
         products,
-        cart
+        cartItems
     }
 })
 

@@ -6,7 +6,7 @@ export interface cartState {
 }
 
 const cartItemsModule = {
-    namespace: true,
+    namespaced: true,
 
     state: ()  => ({
         items: []
@@ -32,9 +32,7 @@ const cartItemsModule = {
 
     },
     getters: {
-        cartItems(state: cartState){
-            return state.items
-        },
+        cartItems: (state: cartState) => state.items,
         totalPrice(state: cartState){
             return state.items.reduce((total,item) => total + item.price * item.quantity,0)
         },

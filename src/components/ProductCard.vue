@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import type { PropType } from "vue";
-import type { Product } from "../store/modules/products";
+import type { Product } from "../types/product";
 import { mapMutations } from "vuex";
 export default {
   props: {

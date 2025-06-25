@@ -22,7 +22,8 @@
         {{ item.quantity }}
         <img :src="item.image" alt="" class="cartItem--img" />
       </div>
-      <div></div>
+      <div>Number of items: {{ itemCount }}</div>
+      <div>Total Price: {{ totalPrice }} $</div>
     </div>
     <div class="cartSidebar__content"></div>
   </div>

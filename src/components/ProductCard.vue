@@ -6,7 +6,12 @@
       <p>{{ product.rating.rate }} out of 5 stars</p>
       <small>({{ product.rating.count }} reviews)</small>
     </div>
-    <img :src="product?.image" alt="Product image" class="productCard__image" />
+    <img
+      :src="product?.image"
+      alt="Product image"
+      class="productCard__image"
+      @click="goToProductDetail"
+    />
     <p>{{ product.description }}</p>
     <p>{{ product.price }} $</p>
     <div class="productCard__addItem">
@@ -21,6 +26,7 @@
 import type { PropType } from "vue";
 import type { Product } from "../types/product";
 import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 export default {
   props: {
     product: {
@@ -32,6 +38,16 @@ export default {
     ...mapMutations("cartItems", ["ADD_ITEM"]),
     addToCart() {
       this.ADD_ITEM(this.product);
+    },
+    ...mapActions("selectedProduct", ["selectProduct"]),
+    goToProductDetail() {
+      // this.$store.dispatch("selectedProduct/selectProduct", this.product);
+      // this.$router.push({ name: "ProductDetail" });
+      this.selectProduct(this.product);
+      this.$router.push({
+        name: "ProductDetail",
+        params: { id: this.product.id },
+      });
     },
   },
 };

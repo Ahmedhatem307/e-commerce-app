@@ -12,7 +12,6 @@
       class="productCard__image"
       @click="goToProductDetail"
     />
-    <p>{{ product.description }}</p>
     <p>{{ product.price }} $</p>
     <div class="productCard__addItem">
       <button class="productCard__addItem--btn" @click="addToCart">
@@ -41,8 +40,6 @@ export default {
     },
     ...mapActions("selectedProduct", ["selectProduct"]),
     goToProductDetail() {
-      // this.$store.dispatch("selectedProduct/selectProduct", this.product);
-      // this.$router.push({ name: "ProductDetail" });
       this.selectProduct(this.product);
       this.$router.push({
         name: "ProductDetail",

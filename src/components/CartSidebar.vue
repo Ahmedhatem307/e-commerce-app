@@ -11,19 +11,26 @@
     <div v-if="itemCount === 0">
       <p>Your cart is empty. Try to add stuff</p>
     </div>
-    <div v-else>
+    <div v-else class="cart">
       <div
         v-for="item in cartItems as CartItem[]"
         :key="item.id"
         class="cartItem"
       >
-        {{ item.title }}
-        {{ item.price }}$
-        {{ item.quantity }}
         <img :src="item.image" alt="" class="cartItem--img" />
+        {{ item.title }}
+
+        <div class="cartItem__quantityControl">
+          <button @click="removingQuantity(item)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button @click="addingQuantity(item)">+</button>
+        </div>
+        {{ item.price }}$
       </div>
-      <div>Number of items: {{ itemCount }}</div>
-      <div>Total Price: {{ totalPrice }} $</div>
+      <div class="cart__footer">
+        <div>Number of Items: {{ itemCount }}</div>
+        <div>Total Price: {{ totalPrice }} $</div>
+      </div>
     </div>
     <div class="cartSidebar__content"></div>
   </div>
@@ -32,10 +39,20 @@
 <script lang="ts">
 import { mapGetters } from "vuex";
 import type { CartItem } from "../types/CartItem";
+import { mapMutations } from "vuex";
 
 export default {
   computed: {
     ...mapGetters("cartItems", ["cartItems", "itemCount", "totalPrice"]),
+  },
+  methods: {
+    ...mapMutations("cartItems", ["increaseQuantity", "decreaseQuantity"]),
+    addingQuantity(item: CartItem) {
+      this.increaseQuantity(item.id);
+    },
+    removingQuantity(item: CartItem) {
+      this.decreaseQuantity(item.id);
+    },
   },
 };
 </script>
@@ -49,6 +66,7 @@ export default {
   background-color: #0f1a2b;
   height: 100vh;
   width: 400px;
+  overflow-y: auto;
   &__wrapper {
     &--closeBtn {
       position: fixed;
@@ -57,10 +75,29 @@ export default {
     }
   }
 }
+.cart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &__footer {
+    padding: 20px 0;
+  }
+}
 .cartItem {
-  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 10px;
+  font-size: medium;
+  gap: 10px;
+  padding: 10px;
   &--img {
-    width: 20px;
+    width: 60px;
+    height: auto;
+  }
+  &__quantityControl {
+    display: flex;
+    gap: 10px;
   }
 }
 </style>

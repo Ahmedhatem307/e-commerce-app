@@ -22,12 +22,22 @@ const cartItemsModule = {
                 item.quantity=1
             }
         },
-        REMOVE_ITEMS(state: cartState, id:number) {
-            state.items = state.items.filter(item => item.id !== id)
+        increaseQuantity(state: cartState, id:number){
+            const item = state.items.find(i => i.id === id)
+            if(item){
+                item.quantity++
+            }
         },
-        CLEAR_CART(state: cartState){
-            state.items = []
-        }
+        decreaseQuantity(state: cartState, id:number){
+            const item = state.items.find(i => i.id === id)
+            if(item && item.quantity > 1){
+                item.quantity--
+            }
+            else if(item?.quantity === 1){
+                const index = state.items.findIndex(item => item.id === id)
+                state.items.splice(index, 1)
+            }
+        },
     },
     actions: {
 

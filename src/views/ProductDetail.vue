@@ -3,13 +3,15 @@
     <h1>Product's Detail</h1>
     <h2>{{ product.title }}</h2>
     <h3>{{ product.category }}</h3>
-    <div class="rating">
+    <div class="productCard__rating">
       <p>{{ product.rating.rate }} out of 5 stars</p>
       <small>({{ product.rating.count }} reviews)</small>
     </div>
-    <img :src="product?.image" alt="Product image" class="image" />
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }} $</p>
+    <img :src="product?.image" alt="Product image" class="productCard__image" />
+    <div class="productCard__description">
+      <p>{{ product.description }}</p>
+    </div>
+    <h1>{{ product.price }} $</h1>
   </div>
 </template>
 
@@ -40,14 +42,26 @@ export default {
 </script>
 
 <style lang="scss">
-.rating {
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-}
 
-.image {
-  max-width: 300px;
-  height: 300px;
-  object-fit: contain;
+  &__description {
+    max-width: 400px;
+    margin-top: 20px;
+  }
+
+  &__rating {
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  &__image {
+    max-width: 300px;
+    height: 300px;
+    object-fit: contain;
+  }
 }
 </style>

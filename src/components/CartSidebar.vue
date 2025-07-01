@@ -42,6 +42,7 @@ import type { CartItem } from "../types/CartItem";
 import { mapMutations } from "vuex";
 
 export default {
+  name: "CartSidebar",
   computed: {
     ...mapGetters("cartItems", ["cartItems", "itemCount", "totalPrice"]),
   },

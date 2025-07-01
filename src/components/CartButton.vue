@@ -13,6 +13,7 @@
 import CartSidebar from "./CartSidebar.vue";
 
 export default {
+  name: "CartButton",
   components: {
     CartSidebar,
   },

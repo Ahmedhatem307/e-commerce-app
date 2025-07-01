@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "vitest",
+    "vitest:ui": "vitest --ui"
+
   },
   "dependencies": {
     "axios": "^1.10.0",
@@ -21,13 +23,16 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/runtime": "^7.27.6",
     "@vitejs/plugin-vue": "^5.2.3",
-    "@vue/test-utils": "^2.4.0-alpha.2",
+    "@vitest/ui": "^3.2.4",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "babel-jest": "^26.6.3",
     "jest": "^26.6.3",
+    "jsdom": "^26.1.0",
     "sass-embedded": "^1.89.2",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
+    "vitest": "^3.2.4",
     "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^2.2.8"
   }

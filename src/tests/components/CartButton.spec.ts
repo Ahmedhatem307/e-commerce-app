@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from "vitest";
 import CartButton from "../../components/CartButton.vue";
 import {mount} from '@vue/test-utils'
 import {createStore} from 'vuex'
-import CartSidebar from "../../components/CartSidebar.vue";
 
 const cartModule = {
     namespaced: true,

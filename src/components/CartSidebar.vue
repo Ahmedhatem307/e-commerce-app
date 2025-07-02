@@ -8,7 +8,7 @@
     </div>
     <hr />
 
-    <div v-if="itemCount === 0">
+    <div v-if="itemCount === 0" data-testid="empty-cart">
       <p>Your cart is empty. Try to add stuff</p>
     </div>
     <div v-else class="cart">
@@ -21,9 +21,19 @@
         {{ item.title }}
 
         <div class="cartItem__quantityControl">
-          <button @click="removingQuantity(item)">-</button>
+          <button
+            @click="removingQuantity(item)"
+            data-testid="decreaseQuantity-btn"
+          >
+            -
+          </button>
           <span>{{ item.quantity }}</span>
-          <button @click="addingQuantity(item)">+</button>
+          <button
+            @click="addingQuantity(item)"
+            data-testid="increaseQuantity-btn"
+          >
+            +
+          </button>
         </div>
         {{ item.price }}$
       </div>

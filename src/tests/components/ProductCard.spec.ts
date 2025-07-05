@@ -90,6 +90,9 @@ describe("ProductCard.vue", () => {
     expect(wrapper.text()).toContain(mockItem.title);
     expect(wrapper.text()).toContain(mockItem.category);
     expect(wrapper.find("img").attributes("src")).toBe(mockItem.image);
+    expect(wrapper.text()).toContain(mockItem.price);
+    expect(wrapper.text()).toContain(mockItem.rating.count);
+    expect(wrapper.text()).toContain(mockItem.rating.rate);
   });
 
   // Test Case 3: Trigger ADD_ITEM function when clicking the add to cart button

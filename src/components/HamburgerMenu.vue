@@ -1,5 +1,5 @@
 <template>
-  <div class="hamburger">☰</div>
+  <div class="hamburger" @click="$emit('toggle')">☰</div>
 </template>
 
 <style scoped lang="scss">

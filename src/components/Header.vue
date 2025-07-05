@@ -2,7 +2,7 @@
   <header>
     <nav class="navBar">
       <div class="navBar__leftSide">
-        <HamburgerMenu @click="toggleMenu"></HamburgerMenu>
+        <HamburgerMenu @toggle="toggleMenu"></HamburgerMenu>
         <NavLogo></NavLogo>
 
         <div class="navBar__links" :class="{ open: isMenuOpen }">

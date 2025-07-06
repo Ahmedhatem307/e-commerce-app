@@ -1,5 +1,5 @@
 <template>
-  <div class="productCard">
+  <div class="productCard" v-if="product">
     <h1>Product's Detail</h1>
     <h2>{{ product.title }}</h2>
     <h3>{{ product.category }}</h3>

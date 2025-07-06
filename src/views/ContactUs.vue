@@ -16,7 +16,9 @@
       <label for="message">
         Message <textarea placeholder="Your Message" required></textarea>
       </label>
-      <button type="submit" class="contactForm__btn">Send Message</button>
+      <button type="submit" class="contactForm__btn" disabled>
+        Send Message
+      </button>
     </form>
   </div>
 </template>

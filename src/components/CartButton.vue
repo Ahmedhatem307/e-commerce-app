@@ -9,25 +9,15 @@
   </transition>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import CartSidebar from "./CartSidebar.vue";
 
-export default {
-  name: "CartButton",
-  components: {
-    CartSidebar,
-  },
-  data() {
-    return {
-      isCartOpen: false,
-    };
-  },
-  methods: {
-    toggleCart() {
-      this.isCartOpen = !this.isCartOpen;
-    },
-  },
-};
+const isCartOpen = ref(false);
+
+function toggleCart() {
+  isCartOpen.value = !isCartOpen.value;
+}
 </script>
 
 <style>

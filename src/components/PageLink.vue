@@ -2,15 +2,10 @@
   <router-link :to="to" class="pageLink"><slot></slot></router-link>
 </template>
 
-<script>
-export default {
-  name: "PageLink",
-  props: {
-    to: {
-      type: [String, Object],
-    },
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  to: string | Record<string, any>;
+}>();
 </script>
 
 <style>

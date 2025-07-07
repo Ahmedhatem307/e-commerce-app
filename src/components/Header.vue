@@ -18,34 +18,19 @@
   </header>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref } from "vue";
+
 import PageLink from "./PageLink.vue";
 import NavLogo from "./NavLogo.vue";
 import HamburgerMenu from "./HamburgerMenu.vue";
 import CartButton from "./CartButton.vue";
-import CartSidebar from "./CartSidebar.vue";
-export default {
-  components: {
-    PageLink,
-    NavLogo,
-    HamburgerMenu,
-    CartButton,
-    CartSidebar,
-  },
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-    closeMenu() {
-      this.isMenuOpen = false;
-    },
-  },
-};
+
+const isMenuOpen = ref(false);
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
+}
 </script>
 
 <style scoped lang="scss">

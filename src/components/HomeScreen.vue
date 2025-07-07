@@ -13,14 +13,8 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import PageLink from "./PageLink.vue";
-
-export default {
-  components: {
-    PageLink,
-  },
-};
 </script>
 
 <style lang="scss" scoped>

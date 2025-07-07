@@ -46,26 +46,24 @@
   </div>
 </template>
 
-<script lang="ts">
-import { mapGetters } from "vuex";
+<script setup lang="ts">
+import { useStore } from "vuex";
+import { computed } from "vue";
 import type { CartItem } from "../types/CartItem";
-import { mapMutations } from "vuex";
 
-export default {
-  name: "CartSidebar",
-  computed: {
-    ...mapGetters("cartItems", ["cartItems", "itemCount", "totalPrice"]),
-  },
-  methods: {
-    ...mapMutations("cartItems", ["increaseQuantity", "decreaseQuantity"]),
-    addingQuantity(item: CartItem) {
-      this.increaseQuantity(item.id);
-    },
-    removingQuantity(item: CartItem) {
-      this.decreaseQuantity(item.id);
-    },
-  },
-};
+const store = useStore();
+
+const cartItems = computed(() => store.getters["cartItems/cartItems"]);
+const itemCount = computed(() => store.getters["cartItems/itemCount"]);
+const totalPrice = computed(() => store.getters["cartItems/totalPrice"]);
+
+function addingQuantity(item: CartItem) {
+  store.commit("cartItems/increaseQuantity", item.id);
+}
+
+function removingQuantity(item: CartItem) {
+  store.commit("cartItems/decreaseQuantity", item.id);
+}
 </script>
 
 <style scoped lang="scss">

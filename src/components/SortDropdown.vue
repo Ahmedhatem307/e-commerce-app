@@ -11,19 +11,18 @@
   <button @click="emitSort">Sort</button>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      selectedSort: "default",
-    };
-  },
-  methods: {
-    emitSort() {
-      this.$emit("sort", this.selectedSort);
-    },
-  },
-};
+<script setup lang="ts">
+import { ref } from "vue";
+
+const emit = defineEmits<{
+  (e: "sort", value: string): void;
+}>();
+
+const selectedSort = ref("default");
+
+function emitSort() {
+  emit("sort", selectedSort.value);
+}
 </script>
 
 <style scoped lang="scss"></style>

@@ -15,30 +15,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { mapActions } from "vuex";
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import type { Product } from "../types/product";
 
-export default {
-  data() {
-    return {
-      product: null,
-    };
-  },
-  methods: {
-    ...mapActions("selectedProduct", ["fetchProductById"]),
-  },
-  async created() {
-    //fetch the product form the fake store api every time the page
-    //refresh using the id
-    const id = this.$route.params.id;
-    try {
-      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-      this.product = await res.json();
-    } catch (error) {
-      console.error("Error fetching product:", error);
-    }
-  },
-};
+const product = ref<Product | null>(null);
+const route = useRoute();
+
+onMounted(async () => {
+  const id = route.params.id;
+  try {
+    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+    product.value = await res.json();
+  } catch (error) {
+    console.error("Error fetching product:", error);
+  }
+});
 </script>
 
 <style lang="scss">

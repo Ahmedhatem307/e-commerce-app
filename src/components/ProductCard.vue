@@ -21,33 +21,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import type { PropType } from "vue";
+<script setup lang="ts">
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import type { Product } from "../types/product";
-import { mapMutations } from "vuex";
-import { mapActions } from "vuex";
-export default {
-  props: {
-    product: {
-      type: Object as PropType<Product>,
-      required: true,
-    },
-  },
-  methods: {
-    ...mapMutations("cartItems", ["ADD_ITEM"]),
-    addToCart() {
-      this.ADD_ITEM(this.product);
-    },
-    ...mapActions("selectedProduct", ["selectProduct"]),
-    goToProductDetail() {
-      this.selectProduct(this.product);
-      this.$router.push({
-        name: "ProductDetail",
-        params: { id: this.product.id },
-      });
-    },
-  },
-};
+
+const props = defineProps<{
+  product: Product;
+}>();
+
+const store = useStore();
+const router = useRouter();
+
+function addToCart() {
+  store.commit("cartItems/ADD_ITEM", props.product);
+}
+
+function goToProductDetail() {
+  store.dispatch("selectedProduct/selectProduct", props.product);
+  router.push({
+    name: "ProductDetail",
+    params: { id: props.product.id },
+  });
+}
 </script>
 
 <style scoped lang="scss">

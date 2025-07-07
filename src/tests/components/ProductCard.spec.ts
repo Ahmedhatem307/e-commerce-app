@@ -3,6 +3,7 @@ import { mount } from "@vue/test-utils";
 import { createStore } from "vuex";
 import type { Product } from "../../types/product";
 import ProductCard from "../../components/ProductCard.vue";
+import { useRouter } from 'vue-router';
 
 const addToCartMock = vi.fn();
 const goToProudctDetailmock = vi.fn();
@@ -38,11 +39,10 @@ function createMockStore() {
   }
 }
 
-const mockPush = vi.fn();
+vi.mock('vue-router', () => ({
+  useRouter: vi.fn(),
+}));
 
-const mockRouter = {
-  push: mockPush,
-};
 
 const mockItem: Product = {
   id: 1,
@@ -59,22 +59,25 @@ describe("ProductCard.vue", () => {
   it("Clicking the image triggers router", async () => {
     const store = createMockStore();
 
+    const mockPush = vi.fn();
+
+    (useRouter as ReturnType<typeof vi.fn>).mockReturnValue({
+      push: mockPush,
+    });
+
     const wrapper = mount(ProductCard, {
       props: {
         product: mockItem,
       },
       global: {
         plugins: [store],
-        mocks: {
-          $router: mockRouter,
-        },
       },
     });
 
     const productImage = wrapper.find(".productCard__image");
     await productImage.trigger("click");
 
-    expect(mockRouter.push).toHaveBeenCalledTimes(1);
+    expect(mockPush).toHaveBeenCalledTimes(1);
     expect(mockPush).toHaveBeenCalledWith({
       name: "ProductDetail",
       params: { id: mockItem.id },

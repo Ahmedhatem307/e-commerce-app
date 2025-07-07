@@ -1,9 +1,9 @@
 import { shallowMount } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import Products from '../../views/Products.vue'
+import ProductsPage from '../../views/ProductsPage.vue'
 import { createStore } from 'vuex'
 
-describe('Products.vue', () => {
+describe('ProductsPage.vue', () => {
   let store: any
   let state: any
   let actions: any
@@ -34,7 +34,7 @@ describe('Products.vue', () => {
   })
 
   it('renders the title', () => {
-    const wrapper = shallowMount(Products, {
+    const wrapper = shallowMount(ProductsPage, {
       global: {
         plugins: [store],
       },
@@ -44,7 +44,7 @@ describe('Products.vue', () => {
   })
 
   it('calls fetchProducts on mount', () => {
-    shallowMount(Products, {
+    shallowMount(ProductsPage, {
       global: {
         plugins: [store],
       },
@@ -54,7 +54,7 @@ describe('Products.vue', () => {
   })
 
   it('sorts by name ascending', async () => {
-    const wrapper = shallowMount(Products, {
+    const wrapper = shallowMount(ProductsPage, {
       global: {
         plugins: [store],
       },
@@ -69,7 +69,7 @@ describe('Products.vue', () => {
   })
 
   it('sorts by price descending', async () => {
-    const wrapper = shallowMount(Products, {
+    const wrapper = shallowMount(ProductsPage, {
       global: {
         plugins: [store],
       },
@@ -84,7 +84,7 @@ describe('Products.vue', () => {
   })
 
   it('returns products unchanged when sort is default', () => {
-    const wrapper = shallowMount(Products, {
+    const wrapper = shallowMount(ProductsPage, {
       global: {
         plugins: [store],
       },

@@ -1,59 +1,65 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import CartButton from "../../components/CartButton.vue";
 import {mount} from '@vue/test-utils'
-import {createStore} from 'vuex'
+import {createPinia, setActivePinia} from 'pinia'
 
-const cartModule = {
-    namespaced: true,
-    state: () => ({
-        items: []
-    }),
-    getters: {
-        itemCount: () => 0
-    },
-    actions: {
-        toggleCart: vi.fn()
-    }
-}
 
-const store = createStore({
-    modules: {
-        cart: cartModule
-    }
+
+vi.mock('@/stores/cartItemsStore', () => {
+  const items: any = []
+  return {
+    useCartItemStore: vi.fn(() => ({
+      items,
+      cartItems: items,
+      itemCount: 0,
+      totalPrice: 0,
+      ADD_ITEM: vi.fn(),
+      increaseQuantity: vi.fn(),
+      decreaseQuantity: vi.fn(),
+    })),
+  }
 })
 
+
 describe("CartButton.vue", () =>{
+beforeEach(() => {
+    setActivePinia(createPinia());
+  });
+
+
     // Test Case 1: Inetial render
     it("render CartButton but not CartSidebar", () => {
-        const wrappper = mount(CartButton)
-        expect(wrappper.find('.cartBtn').exists()).toBe(true)
-        expect(wrappper.findComponent({name: 'CartSideBar'}).exists()).toBe(false)
+        const wrapper = mount(CartButton)
+        expect(wrapper.find('.cartBtn').exists()).toBe(true)
+        expect(wrapper.findComponent({name: 'CartSideBar'}).exists()).toBe(false)
     })
 
     //Test Case 2: Clicking the Cart button and rendering the SideCartbar
     it("render CartButton and CartSidebar", async() => {
-        const wrappper = mount(CartButton, {
+        const wrapper = mount(CartButton, {
             global: {
-                plugins: [store]
-            }
-        })
-        await wrappper.find('.cartBtn').trigger('click')
-        expect(wrappper.findComponent({name: 'CartSidebar'}).exists()).toBe(true)
+                plugins: [createPinia()],
+            },
+        });
+
+        await wrapper.find('.cartBtn').trigger('click')
+        await wrapper.vm.$nextTick();
+        expect(wrapper.findComponent({name: 'CartSidebar'}).exists()).toBe(true)
     })
 
     // Test Case 3: Toggling the CartSidebar on close emit
     it("hide CartSidebar when CartSidebar emit close", async() => {
-        const wrappper = mount(CartButton, {
+        const wrapper = mount(CartButton, {
             global: {
-                plugins: [store]
+                plugins: [createPinia()]
             }
         })
 
-        await wrappper.find('.cartBtn').trigger('click')
-        const sidebar = wrappper.findComponent({name: "CartSidebar"})
+        await wrapper.find('.cartBtn').trigger('click')
+        const sidebar = wrapper.findComponent({name: "CartSidebar"})
         await sidebar.vm.$emit('close')
-        await wrappper.vm.$nextTick()
+        await wrapper.vm.$nextTick()
 
-        expect(wrappper.findComponent({name:'CartSidebar'}).exists()).toBe(false)
+        expect(wrapper.findComponent({name:'CartSidebar'}).exists()).toBe(false)
     })
 })

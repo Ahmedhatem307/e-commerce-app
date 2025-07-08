@@ -1,21 +1,17 @@
-<script>
+<script setup lang="ts">
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
 import HomeScreen from "./HomeScreen.vue";
-export default {
-  components: {
-    Header,
-    Footer,
-    HomeScreen,
-  },
-};
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 </script>
 
 <template>
   <div>
     <Header />
     <main>
-      <div v-if="$route.path === '/'" class="homeScreen">
+      <div v-if="route.path === '/'" class="homeScreen">
         <HomeScreen></HomeScreen>
       </div>
       <slot />

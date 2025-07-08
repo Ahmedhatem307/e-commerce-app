@@ -47,22 +47,21 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "vuex";
+import { useCartItemStore } from "../stores/cartItemsStore";
 import { computed } from "vue";
 import type { CartItem } from "../types/CartItem";
 
-const store = useStore();
+const cart = useCartItemStore();
 
-const cartItems = computed(() => store.getters["cartItems/cartItems"]);
-const itemCount = computed(() => store.getters["cartItems/itemCount"]);
-const totalPrice = computed(() => store.getters["cartItems/totalPrice"]);
+const cartItems = computed(() => cart.cartItems);
+const itemCount = computed(() => cart.itemCount);
+const totalPrice = computed(() => cart.totalPrice);
 
 function addingQuantity(item: CartItem) {
-  store.commit("cartItems/increaseQuantity", item.id);
+  cart.increaseQuantity(item.id);
 }
-
 function removingQuantity(item: CartItem) {
-  store.commit("cartItems/decreaseQuantity", item.id);
+  cart.decreaseQuantity(item.id);
 }
 </script>
 

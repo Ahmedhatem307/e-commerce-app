@@ -1,5 +1,6 @@
 import type { CartItem } from "../types/CartItem";
 import { defineStore } from "pinia";
+import type { Product } from "../types/product";
 
 export interface cartState {
   items: CartItem[];
@@ -22,13 +23,13 @@ export const useCartItemStore = defineStore("cartItem", {
   },
 
   actions: {
-    ADD_ITEM(item: CartItem) {
-      const existingItem = this.items.find((i) => i.id === item.id);
+    ADD_ITEM(product: Product) {
+      const existingItem = this.cartItems.find((i) => i.id === product.id);
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        item.quantity = 1;
-        this.items.push(item);
+        const cartItem: CartItem = { ...product, quantity: 1 }
+        this.cartItems.push(cartItem)
       }
     },
     increaseQuantity(id: number) {

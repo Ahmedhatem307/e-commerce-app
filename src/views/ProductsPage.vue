@@ -15,15 +15,15 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
-import { useStore } from "vuex";
+import { useProductStore } from "../stores/productStore";
 import ProductCard from "../components/ProductCard.vue";
 import SortDropdown from "../components/SortDropdown.vue";
 import type { Product } from "../types/product";
 
-const store = useStore();
+const prodcutStore = useProductStore();
 
 const sortOptions = ref("default");
-const products = computed<Product[]>(() => store.state.products.products);
+const products = computed<Product[]>(() => prodcutStore.products);
 
 function handleSort(option: string) {
   sortOptions.value = option;
@@ -51,7 +51,7 @@ const sortedProducts = computed(() => {
 });
 
 onMounted(() => {
-  store.dispatch("products/fetchProducts");
+  prodcutStore.fetchProducts();
 });
 
 defineExpose({

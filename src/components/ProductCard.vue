@@ -22,23 +22,25 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import type { Product } from "../types/product";
+import { useCartItemStore } from "../stores/cartItemsStore";
+import { useSelectedProductStore } from "../stores/selectedProductStore";
 
 const props = defineProps<{
   product: Product;
 }>();
 
-const store = useStore();
+const cart = useCartItemStore();
+const selectedProduct = useSelectedProductStore();
 const router = useRouter();
 
 function addToCart() {
-  store.commit("cartItems/ADD_ITEM", props.product);
+  cart.ADD_ITEM(props.product);
 }
 
 function goToProductDetail() {
-  store.dispatch("selectedProduct/selectProduct", props.product);
+  selectedProduct.setSelectedProduct(props.product);
   router.push({
     name: "ProductDetail",
     params: { id: props.product.id },

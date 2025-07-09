@@ -3,6 +3,7 @@
 A modern e-commerce web application built with Vue 3 and Pinia. Users can browse products, view details, and manage their cart in a seamless and responsive UI.
 
 ## 🔗 Live Demo
+
 [https://saqaya-store.vercel.app/](https://saqaya-store.vercel.app/)
 
 ## 🛠 Tech Stack
@@ -15,13 +16,26 @@ A modern e-commerce web application built with Vue 3 and Pinia. Users can browse
 
 > 🛠 This project originally used Vuex and the Options API but has since been migrated to Pinia and the Composition API to follow modern Vue best practices.
 
-  ## ✨ Features
+## ✨ Features
+
 - View product details
 - Add and remove items from cart
 - Quantity control in cart sidebar
 - Responsive design
 
-  ## 🧑‍💻 Getting Started
+## 📁 Project Structure
+
+src/
+├── assets/               # Static assets (e.g., images)
+├── components/           # Reusable UI components
+├── router/               # Vue Router configuration
+├── stores/               # Pinia stores (cartItems, products, selectedProduct)
+├── types/                # TypeScript types and interfaces
+├── views/                # Page-level components (e.g., HomePage, ProductPage)
+├── App.vue               # Root component
+└── main.ts               # App initialization and mounting
+
+## 🧑‍💻 Getting Started
 
 Clone the project and install dependencies.
 

@@ -1,96 +1,96 @@
-import { shallowMount } from '@vue/test-utils'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import ProductsPage from '../../views/ProductsPage.vue'
-import { createStore } from 'vuex'
+import { shallowMount } from "@vue/test-utils";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import ProductsPage from "../../views/ProductsPage.vue";
+import { createPinia, setActivePinia } from "pinia";
 
-describe('ProductsPage.vue', () => {
-  let store: any
-  let state: any
-  let actions: any
 
+vi.mock("../../stores/productStore", () => ({
+  useProductStore: vi.fn(),
+}));
+
+import { useProductStore } from "../../stores/productStore";
+
+describe("ProductsPage.vue", () => {
+  let fetchProductsMock: ReturnType<typeof vi.fn>;
+  // let productStoreMock: ReturnType<typeof vi.fn>;
+
+  const mockState = {
+    products: [
+      { id: 1, title: "B Product", price: 30, rating: { rate: 4.2 } },
+      { id: 2, title: "A Product", price: 20, rating: { rate: 4.8 } },
+    ],
+    loading: false,
+    error: null,
+  };
   beforeEach(() => {
-    state = {
-      products: [
-        { id: 1, title: 'B Product', price: 30, rating: { rate: 4.2 } },
-        { id: 2, title: 'A Product', price: 20, rating: { rate: 4.8 } },
-      ],
-      loading: false,
-      error: null,
-    }
+    setActivePinia(createPinia());
 
-    actions = {
-      fetchProducts: vi.fn(),
-    }
+    fetchProductsMock = vi.fn();
 
-    store = createStore({
-      modules: {
-        products: {
-          namespaced: true,
-          state,
-          actions,
-        },
-      },
-    })
-  })
+    (useProductStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
+      {...mockState,
+      fetchProducts: fetchProductsMock,
+    });
+  });
 
-  it('renders the title', () => {
+  it("renders the title", () => {
     const wrapper = shallowMount(ProductsPage, {
       global: {
-        plugins: [store],
+        plugins: [createPinia()],
       },
-    })
+    });
 
-    expect(wrapper.text()).toContain('Products Page')
-  })
+    expect(wrapper.text()).toContain("Products Page");
+  });
 
-  it('calls fetchProducts on mount', () => {
+  it("calls fetchProducts on mount", () => {
     shallowMount(ProductsPage, {
       global: {
-        plugins: [store],
+        plugins: [createPinia()],
       },
-    })
+    });
 
-    expect(actions.fetchProducts).toHaveBeenCalled()
-  })
+    expect(fetchProductsMock).toHaveBeenCalled();
+  });
 
-  it('sorts by name ascending', async () => {
+  it("sorts by name ascending", async () => {
     const wrapper = shallowMount(ProductsPage, {
       global: {
-        plugins: [store],
+        plugins: [createPinia()],
       },
-    })
+    });
 
-    wrapper.vm.handleSort('nameAsc')
-    await wrapper.vm.$nextTick()
+    wrapper.vm.handleSort("nameAsc");
+    await wrapper.vm.$nextTick();
 
-    const sorted = wrapper.vm.sortedProducts
-    expect(sorted[0].title).toBe('A Product')
-    expect(sorted[1].title).toBe('B Product')
-  })
+    const sorted = wrapper.vm.sortedProducts;
+    expect(sorted[0].title).toBe("A Product");
+    expect(sorted[1].title).toBe("B Product");
+  });
 
-  it('sorts by price descending', async () => {
+  it("sorts by price descending", async () => {
     const wrapper = shallowMount(ProductsPage, {
       global: {
-        plugins: [store],
+        plugins: [createPinia()],
       },
-    })
+    });
 
-    wrapper.vm.handleSort('priceDesc')
-    await wrapper.vm.$nextTick()
+    wrapper.vm.handleSort("priceDesc");
+    await wrapper.vm.$nextTick();
 
-    const sorted = wrapper.vm.sortedProducts
-    expect(sorted[0].price).toBe(30)
-    expect(sorted[1].price).toBe(20)
-  })
+    const sorted = wrapper.vm.sortedProducts;
+    expect(sorted[0].price).toBe(30);
+    expect(sorted[1].price).toBe(20);
+  });
 
-  it('returns products unchanged when sort is default', () => {
+  it("returns products unchanged when sort is default", () => {
     const wrapper = shallowMount(ProductsPage, {
       global: {
-        plugins: [store],
+        plugins: [createPinia()],
       },
-    })
+    });
 
-    const sorted = wrapper.vm.sortedProducts
-    expect(sorted).toEqual(state.products)
-  })
-})
+    const sorted = wrapper.vm.sortedProducts;
+    expect(sorted).toEqual(mockState.products);
+  });
+});

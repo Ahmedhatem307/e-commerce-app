@@ -1,46 +1,41 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import CartSidebar from "../../components/CartSidebar.vue";
 import { mount } from "@vue/test-utils";
-import { createStore } from "vuex";
-import type { CartItem } from "../../types/CartItem";
+import { createPinia, setActivePinia } from "pinia";
 
 const increaseQuantityMock = vi.fn();
 const decreaseQuantityMock = vi.fn();
+const useCartItemStoreMock = vi.fn();
 
-function createMockStore({
-  itemCount = 0,
-  items = [],
-  totalPrice = 0,
-}: {
-  itemCount: number;
-  items: CartItem[];
-  totalPrice: number;
-}) {
-  return createStore({
-    modules: {
-      cartItems: {
-        namespaced: true,
-        state: () => ({}),
-        getters: {
-          itemCount: () => itemCount,
-          cartItems: () => items,
-          totalPrice: () => totalPrice,
-        },
-        mutations: {
-          increaseQuantity: increaseQuantityMock,
-          decreaseQuantity: decreaseQuantityMock,
-        },
-      },
-    },
-  });
-}
+vi.mock("../../stores/cartItemsStore", () => ({
+  useCartItemStore: () => useCartItemStoreMock(),
+}));
 
 describe("CartSidebar.vue", () => {
+  beforeEach(() => {
+    setActivePinia(createPinia());
+
+    useCartItemStoreMock.mockReturnValue({
+      itemCount: 0,
+      cartItems: [],
+      totalPrice: 0,
+      increaseQuantity: increaseQuantityMock,
+      decreaseQuantity: decreaseQuantityMock,
+    });
+  });
+
   //Test Case 1: Render a message when Cart is empty
   it("Display a message when cart is empty", () => {
-    const store = createMockStore({ itemCount: 0, items: [], totalPrice: 0 });
+    useCartItemStoreMock.mockReturnValue({
+      itemCount: 0,
+      cartItems: [],
+      totalPrice: 0,
+      increaseQuantity: increaseQuantityMock,
+      decreaseQuantity: decreaseQuantityMock,
+    });
+
     const wrapper = mount(CartSidebar, {
-      global: { plugins: [store] },
+      global: { plugins: [createPinia()] },
     });
     const emptyMessage = wrapper.find('[data-testid="empty-cart"]');
     expect(emptyMessage.text()).toContain(
@@ -50,18 +45,20 @@ describe("CartSidebar.vue", () => {
 
   //Test Case 2: Render items in the cart when items exist
   it("Display products when they are added to the cart", () => {
-    const mockItems: CartItem[] = [
-      { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 2 },
-      { id: 2, title: "item 2", price: 30, image: "test.jpg", quantity: 4 },
-    ];
-    const store = createMockStore({
-      itemCount: 6,
-      items: mockItems,
-      totalPrice: 164,
+    useCartItemStoreMock.mockReturnValue({
+      cartItems: [
+        { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 2 },
+      ],
+      itemCount: 2,
+      totalPrice: 44,
+      increaseQuantity: increaseQuantityMock,
+      decreaseQuantity: decreaseQuantityMock,
     });
+
     const wrapper = mount(CartSidebar, {
-      global: { plugins: [store] },
+      global: { plugins: [createPinia()] },
     });
+
     const productDiv = wrapper.find(".cart");
     expect(productDiv.exists()).toBe(true);
     expect(productDiv.text()).toContain("item 1");
@@ -69,60 +66,62 @@ describe("CartSidebar.vue", () => {
 
   // Test Case 3: Trigger increaseQuantity function when clicking the + button
   it("Clicking + button triggers increaseQuantity", async () => {
-    const mockItems: CartItem[] = [
-      { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 1 },
-    ];
-    const store = createMockStore({
+    useCartItemStoreMock.mockReturnValue({
+      cartItems: [
+        { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 1 },
+      ],
       itemCount: 1,
-      items: mockItems,
       totalPrice: 22,
+      increaseQuantity: increaseQuantityMock,
+      decreaseQuantity: decreaseQuantityMock,
     });
+
     const wrapper = mount(CartSidebar, {
-      global: { plugins: [store] },
+      global: { plugins: [createPinia()] },
     });
 
     const plusButton = wrapper.find('[data-testid="increaseQuantity-btn"]');
     await plusButton.trigger("click");
-    expect(increaseQuantityMock).toHaveBeenCalledWith(expect.any(Object), 1);
+
+    expect(increaseQuantityMock).toHaveBeenCalledWith(1);
   });
 
   // Test Case 4: Trigger decreaseQuantity function when clicking the - button
   it("Clicking - button triggers decreaseQuantity", async () => {
-    const mockItems: CartItem[] = [
-      { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 2 },
-    ];
-    const store = createMockStore({
+    useCartItemStoreMock.mockReturnValue({
+      cartItems: [
+        { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 2 },
+      ],
       itemCount: 2,
-      items: mockItems,
       totalPrice: 44,
+      increaseQuantity: increaseQuantityMock,
+      decreaseQuantity: decreaseQuantityMock,
     });
     const wrapper = mount(CartSidebar, {
-      global: { plugins: [store] },
+      global: { plugins: [createPinia()] },
     });
 
     const plusButton = wrapper.find('[data-testid="decreaseQuantity-btn"]');
     await plusButton.trigger("click");
-    expect(decreaseQuantityMock).toHaveBeenCalledWith(expect.any(Object), 1);
+
+    expect(decreaseQuantityMock).toHaveBeenCalledWith(1);
   });
 
   //Test Case 5: Render Correct totalPrice and itemCount
   it("Show corerect totalPrice and itemCount", () => {
-    const mockTotalPrice = 164;
-    const mockCount = 6;
-
-    const mockItems: CartItem[] = [
-      { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 2 },
-      { id: 2, title: "item 2", price: 30, image: "test.jpg", quantity: 4 },
-    ];
-
-    const store = createMockStore({
-      itemCount: mockCount,
-      items: mockItems,
-      totalPrice: mockTotalPrice,
+    useCartItemStoreMock.mockReturnValue({
+      cartItems: [
+        { id: 1, title: "item 1", price: 22, image: "test.jpg", quantity: 2 },
+        { id: 2, title: "item 2", price: 30, image: "test.jpg", quantity: 4 },
+      ],
+      itemCount: 6,
+      totalPrice: 164,
+      increaseQuantity: increaseQuantityMock,
+      decreaseQuantity: decreaseQuantityMock,
     });
 
     const wrapper = mount(CartSidebar, {
-      global: { plugins: [store] },
+      global: { plugins: [createPinia()] },
     });
 
     const cartFooter = wrapper.find(".cart__footer").text();

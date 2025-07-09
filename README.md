@@ -24,7 +24,7 @@ A modern e-commerce web application built with Vue 3 and Pinia. Users can browse
 - Responsive design
 
 ## 📁 Project Structure
-
+```bash
 src/
 ├── assets/               # Static assets (e.g., images)
 ├── components/           # Reusable UI components
@@ -34,7 +34,7 @@ src/
 ├── views/                # Page-level components (e.g., HomePage, ProductPage)
 ├── App.vue               # Root component
 └── main.ts               # App initialization and mounting
-
+```
 ## 🧑‍💻 Getting Started
 
 Clone the project and install dependencies.
@@ -44,3 +44,4 @@ git clone https://github.com/your-username/your-repo.git
 cd your-repo
 npm install
 npm run dev
+```

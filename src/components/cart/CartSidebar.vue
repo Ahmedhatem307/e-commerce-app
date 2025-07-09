@@ -47,9 +47,9 @@
 </template>
 
 <script setup lang="ts">
-import { useCartItemStore } from "../stores/cartItemsStore";
+import { useCartItemStore } from "../../stores/cartItemsStore";
 import { computed } from "vue";
-import type { CartItem } from "../types/CartItem";
+import type { CartItem } from "../../types/CartItem";
 
 const cart = useCartItemStore();
 

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import CartButton from "../../components/CartButton.vue";
+import CartButton from "../../components/cart/CartButton.vue";
 import {mount} from '@vue/test-utils'
 import {createPinia, setActivePinia} from 'pinia'
 

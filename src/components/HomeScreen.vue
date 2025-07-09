@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import PageLink from "./PageLink.vue";
+import PageLink from "./common/PageLink.vue";
 </script>
 
 <style lang="scss" scoped>

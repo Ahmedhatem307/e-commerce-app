@@ -23,9 +23,9 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import type { Product } from "../types/product";
-import { useCartItemStore } from "../stores/cartItemsStore";
-import { useSelectedProductStore } from "../stores/selectedProductStore";
+import type { Product } from "../../types/product";
+import { useCartItemStore } from "../../stores/cartItemsStore";
+import { useSelectedProductStore } from "../../stores/selectedProductStore";
 
 const props = defineProps<{
   product: Product;

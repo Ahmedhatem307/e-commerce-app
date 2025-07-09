@@ -3,7 +3,6 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import ProductsPage from "../../views/ProductsPage.vue";
 import { createPinia, setActivePinia } from "pinia";
 
-
 vi.mock("../../stores/productStore", () => ({
   useProductStore: vi.fn(),
 }));
@@ -12,7 +11,6 @@ import { useProductStore } from "../../stores/productStore";
 
 describe("ProductsPage.vue", () => {
   let fetchProductsMock: ReturnType<typeof vi.fn>;
-  // let productStoreMock: ReturnType<typeof vi.fn>;
 
   const mockState = {
     products: [
@@ -27,8 +25,8 @@ describe("ProductsPage.vue", () => {
 
     fetchProductsMock = vi.fn();
 
-    (useProductStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
-      {...mockState,
+    (useProductStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+      ...mockState,
       fetchProducts: fetchProductsMock,
     });
   });

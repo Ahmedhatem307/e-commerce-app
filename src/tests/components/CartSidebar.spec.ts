@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import CartSidebar from "../../components/CartSidebar.vue";
+import CartSidebar from "../../components/cart/CartSidebar.vue";
 import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 

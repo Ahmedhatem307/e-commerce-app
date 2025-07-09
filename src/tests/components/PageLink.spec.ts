@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import PageLink from "../../components/PageLink.vue";
+import PageLink from "../../components/common/PageLink.vue"
 import { createRouter, createMemoryHistory } from "vue-router";
 
 describe("PageLink.vue", () => {

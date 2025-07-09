@@ -1,6 +1,6 @@
 <template>
   <img
-    src="../assets/images/logo.png"
+    src="../../assets/images/logo.png"
     alt="The store's placeholder Logo"
     class="navBar__leftSide--logo"
   />

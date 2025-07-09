@@ -16,8 +16,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { useProductStore } from "../stores/productStore";
-import ProductCard from "../components/ProductCard.vue";
-import SortDropdown from "../components/SortDropdown.vue";
+import ProductCard from "../components/products/ProductCard.vue";
+import SortDropdown from "../components/products/SortDropdown.vue";
 import type { Product } from "../types/product";
 
 const prodcutStore = useProductStore();

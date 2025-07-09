@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import Footer from "@/components/Footer.vue";
+import Footer from "../../components/common/Footer.vue";
 
 //All test casees are for static content since there are no props, interactivity or dynamic rendering
 

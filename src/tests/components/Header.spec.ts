@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { mount } from "@vue/test-utils";
-import Header from "../../components/Header.vue";
-import PageLink from "../../components/PageLink.vue";
+import Header from "../../components/common/Header.vue";
+import PageLink from "../../components/common/PageLink.vue";
 
 // Mocks for child components
 vi.mock("@/components/HamburgerMenu.vue", () => ({

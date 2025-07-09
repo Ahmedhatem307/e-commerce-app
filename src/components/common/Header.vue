@@ -21,10 +21,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import PageLink from "./PageLink.vue";
-import NavLogo from "./NavLogo.vue";
-import HamburgerMenu from "./HamburgerMenu.vue";
-import CartButton from "./CartButton.vue";
+import PageLink from "../common/PageLink.vue";
+import NavLogo from "../layout/NavLogo.vue";
+import HamburgerMenu from "../layout/HamburgerMenu.vue";
+import CartButton from "../cart/CartButton.vue";
 
 const isMenuOpen = ref(false);
 

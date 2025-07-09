@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import HomeScreen from "../../components/HomeScreen.vue";
+import HomeScreen from "../..//components/HomeScreen.vue";
 
 describe("HomeScreen.vue", () => {
   it("renders the welcome title", () => {

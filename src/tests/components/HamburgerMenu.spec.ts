@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import HamburgerMenu from "../../components/HamburgerMenu.vue";
+import HamburgerMenu from "../../components/layout/HamburgerMenu.vue";
 
 describe("HamburgerMenu.vue", () => {
   it("emits toggle event on click", async () => {

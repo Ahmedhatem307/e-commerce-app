@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import type { Product } from "../../types/product";
-import ProductCard from "../../components/ProductCard.vue";
+import ProductCard from "../../components/products/ProductCard.vue";
 import { useRouter } from 'vue-router';
 import { useCartItemStore } from "../../stores/cartItemsStore";
 import { useProductStore } from "../../stores/productStore";

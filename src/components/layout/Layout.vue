@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Header from "./Header.vue";
-import Footer from "./Footer.vue";
-import HomeScreen from "./HomeScreen.vue";
+import Header from "../common/Header.vue";
+import Footer from "../common/Footer.vue";
+import HomeScreen from "../HomeScreen.vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();

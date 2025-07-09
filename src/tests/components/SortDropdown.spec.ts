@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import SortDropdown from "../../components/SortDropdown.vue";
+import SortDropdown from "../../components/products/SortDropdown.vue";
 
 describe("SortDropdown.vue", () => {
   //Test Case 1: render the list and button in the DOM

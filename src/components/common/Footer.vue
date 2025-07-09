@@ -44,17 +44,17 @@
       <div class="container__social">
         <h4 class="container__social--title">Get Started</h4>
         <img
-          src="../assets/images/twitter.png"
+          src="../../assets/images/twitter.png"
           alt="1"
           class="container__social--icon"
         />
         <img
-          src="..//assets/images/instagram.png"
+          src="../../assets/images/instagram.png"
           alt="2"
           class="container__social--icon"
         />
         <img
-          src="..//assets/images/facebook.png"
+          src="../../assets/images/facebook.png"
           alt="3"
           class="container__social--icon"
         />

@@ -45,3 +45,10 @@ cd your-repo
 npm install
 npm run dev
 ```
+
+## 📄 Documentation
+
+You can view the full project documentation:
+
+👉 [Saqaya E-commerce App Documentation](https://gamma.app/docs/SAQAYA-e-commerce-Web-Application-qipmhkrpltib05r)
+
